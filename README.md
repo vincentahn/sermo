@@ -27,7 +27,7 @@ In addition, this project will include:
 
 ## Technologies, Libraries, APIs
 
-* Canvas API to render the gemae board
+* Canvas API to render the game board
 * Webpack and Babel to bundle and transpile Javascript source code
 * npm to manage project dependencies
 
