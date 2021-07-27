@@ -1,11 +1,13 @@
 import Circle from "./elements/circle";
 import Square from "./elements/square";
+import Triangle from "./elements/triangle";
 
 class ActionList{
   constructor(environment){
     this.list = {
       circle: Circle,
-      square: Square
+      square: Square,
+      triangle: Triangle
     };
 
     this.environment = environment;
