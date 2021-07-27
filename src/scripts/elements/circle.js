@@ -3,13 +3,16 @@ import Element from "./element";
 class Circle extends Element{
   constructor(canvas){
     super(canvas);
-
     this.radius = 30;
+
+    this.dragging = false;
   }
 
   updatePosition(){
-    this.posX++;
-    this.posY++;
+    if(!this.dragging){
+      this.posX++;
+      this.posY++;
+    }
   }
 
   confirmInBounds(){
@@ -40,6 +43,22 @@ class Circle extends Element{
     this.confirmInBounds();
 
     this.draw();
+  }
+
+  confirmInsideElement(x, y){
+    if(Math.sqrt(
+      Math.pow(x - this.posX, 2) + 
+      Math.pow(y - this.posY, 2)
+    ) <= this.radius){
+      this.dragging = true;
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  droppedElement(){
+    this.dragging = false;
   }
 }
 
