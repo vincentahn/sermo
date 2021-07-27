@@ -1,19 +1,14 @@
 class Clock{
   constructor(hook, environment){
     this.hook = hook;
-    console.log(this.hook);
+    this.environment = environment;
+    this.context = this.hook.getContext('2d');
+
     this.hook.width = 400;
     this.hook.height = 400;
     this.scaleFactor = this.hook.width / 20;
     this.hook.style.width = "20px";
     this.hook.style.height = "20px";
-
-    // const start = "200px";
-    // this.hook.style.width = start;
-    // this.hook.style.height = start;
-
-    this.context = this.hook.getContext('2d');
-    this.environment = environment;
 
     this.radius = 9;
     this.color = 'rgba(200, 200, 200, 1)';
@@ -27,7 +22,9 @@ class Clock{
 
     this.environment.addClock(this);
     this.toggleAnimation = this.toggleAnimation.bind(this);
-    this.hook.addEventListener("click", this.toggleAnimation)
+    this.hook.addEventListener("click", this.toggleAnimation);
+
+    this.render();
   }
 
   updateTime(){

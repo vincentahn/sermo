@@ -32,7 +32,7 @@ class Environment{
   }
 
   render(timestamp){
-    if(this.animating){
+    if(this.animating && this.elements.length > 0){
       if(this.clock){
         this.clock.render();
       }
