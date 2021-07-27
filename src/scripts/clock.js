@@ -2,13 +2,11 @@ class Clock{
   constructor(hook, environment){
     this.hook = hook;
     console.log(this.hook);
-    this.hook.width = 20;
-    this.hook.height = 20;
-    // this.hook.width = 400;
-    // this.hook.height = 400;
-    // this.scaleFactor = this.hook.width / 20;
-    // this.hook.style.width = "20px";
-    // this.hook.style.height = "20px";
+    this.hook.width = 400;
+    this.hook.height = 400;
+    this.scaleFactor = this.hook.width / 20;
+    this.hook.style.width = "20px";
+    this.hook.style.height = "20px";
 
     // const start = "200px";
     // this.hook.style.width = start;
@@ -19,8 +17,8 @@ class Clock{
 
     this.radius = 9;
     this.color = 'rgba(200, 200, 200, 1)';
-    this.posX = this.hook.width / 2;
-    this.posY = this.hook.height / 2;
+    this.posX = this.hook.width / (2 * this.scaleFactor);
+    this.posY = this.hook.height / (2 * this.scaleFactor);
     this.hourAngle = 0;
     this.minuteAngle = 0;
     this.lineWidth = this.radius * 0.1;
@@ -38,20 +36,22 @@ class Clock{
   }
 
   clearCanvas(){
+    this.context.save();
     this.context.clearRect(0, 0, this.hook.width, this.hook.height);
+    this.context.restore();
   }
 
   drawBorder(){
+    this.context.save();
+
     this.context.beginPath();
     this.context.strokeStyle = this.color;
-    // this.context.arc(0, 0, 9, 0, 2 * Math.PI);
+    this.context.scale(this.scaleFactor, this.scaleFactor);
+
     this.context.arc(this.posX, this.posY, this.radius, 0, 2 * Math.PI);
-
-    // this.context.scale(this.scaleFactor, this.scaleFactor);
-    // let num = 2;
-    // this.context.scale(num, num);
-
     this.context.stroke();
+
+    this.context.restore();
   }
   
   drawHourHand(){
@@ -59,6 +59,8 @@ class Clock{
 
     this.context.beginPath();
     this.context.strokeStyle = this.color;
+    this.context.scale(this.scaleFactor, this.scaleFactor);
+
     this.context.lineWidth = this.lineWidth;
     this.context.lineCap = "round";
     this.context.translate(this.posX, this.posY);
