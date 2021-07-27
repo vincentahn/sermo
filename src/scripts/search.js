@@ -28,12 +28,6 @@ class Search{
       this.actionlist.act(this.value);
     }
   }
-
-  createCircle(){
-    let newCanvas = document.createElement('canvas');
-    let circle = new Circle(newCanvas);
-    this.environment.insertElement(circle);
-  }
 };
 
 export default Search;

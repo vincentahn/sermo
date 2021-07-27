@@ -12,7 +12,8 @@ class ActionList{
   }
 
   act(input){
-    let circle = new Circle();
+    // debugger;
+    let circle = new Circle(this.environment.canvas);
     this.environment.insertElement(circle);
   }
 };
