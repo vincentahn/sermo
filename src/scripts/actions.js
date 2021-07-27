@@ -1,9 +1,11 @@
 import Circle from "./elements/circle";
+import Square from "./elements/square";
 
 class ActionList{
   constructor(environment){
     this.list = {
-      circle: Circle
+      circle: Circle,
+      square: Square
     };
 
     this.environment = environment;
@@ -13,8 +15,8 @@ class ActionList{
 
   act(input){
     // debugger;
-    let circle = new Circle(this.environment.canvas);
-    this.environment.insertElement(circle);
+    let newElement = new this.list[input](this.environment.canvas);
+    this.environment.insertElement(newElement);
   }
 };
 

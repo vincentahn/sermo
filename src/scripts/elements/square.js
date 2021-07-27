@@ -1,13 +1,16 @@
 import Element from "./element";
 
-class Circle extends Element{
+class Square extends Element{
   constructor(canvas){
     super(canvas);
+    this.sideLength = 60;
+    this.angle = 0; // degree
   }
 
   updatePosition(){
     this.posX++;
     this.posY++;
+    this.angle++;
   }
 
   confirmInBounds(){
@@ -25,21 +28,29 @@ class Circle extends Element{
   }
 
   draw(){
-    this.context.beginPath();
     this.context.fillStyle = this.color;
-    this.context.arc(this.posX, this.posY, 30, 0, 2 * Math.PI);
-    this.context.fill();
+
+    this.context.translate(this.posX, this.posY);
+    this.context.rotate(this.angle * Math.PI / 180);
+    this.context.translate(-this.posX, -this.posY);
+
+    const topLeft = this.posX - this.sideLength / 2;
+    const topRight = this.posY - this.sideLength / 2;
+    this.context.fillRect(topLeft, topRight, this.sideLength, this.sideLength);
   }
-
+  
   render(){
-    // debugger;
-    this.updatePosition();
+    this.context.save();
 
+    this.updatePosition();
+    
     this.confirmMax();
     this.confirmInBounds();
-
+    
     this.draw();
-  }
-}
 
-export default Circle;
+    this.context.restore();
+  }
+};
+
+export default Square;
