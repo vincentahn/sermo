@@ -20,7 +20,6 @@ class Search{
 
   handleChange(){
     this.value = this.hook.value;
-    console.log(this.value);
   }
 
   handleSubmit(e){

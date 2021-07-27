@@ -16,7 +16,6 @@ class Environment{
 
   insertElement(element){
     this.elements.push(element);
-    console.log("Element appended");
   }
 
   render(timestamp){
@@ -28,10 +27,6 @@ class Environment{
   }
 
   run(){
-    console.log(this.hook);
-    console.log("Game is running");
-    console.log(this.hook.parentElement);
-
     window.requestAnimationFrame(this.render);
   }
 }

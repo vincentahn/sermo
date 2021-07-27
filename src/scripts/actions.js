@@ -16,7 +16,6 @@ class ActionList{
   }
 
   act(input){
-    // debugger;
     let newElement = new this.list[input](this.environment.canvas);
     this.environment.insertElement(newElement);
   }

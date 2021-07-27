@@ -32,7 +32,6 @@ class Circle extends Element{
   }
 
   render(){
-    // debugger;
     this.updatePosition();
 
     this.confirmMax();
