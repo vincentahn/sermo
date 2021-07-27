@@ -1,6 +1,7 @@
 class MouseTracker{
-  constructor(canvas, elements){
-    this.canvas = canvas;
+  constructor(environment, elements){
+    this.environment = environment;
+    this.canvas = this.environment.canvas;
     this.elements = elements;
 
     this.handleMouseDown = this.handleMouseDown.bind(this);
@@ -15,6 +16,7 @@ class MouseTracker{
       if(element.confirmInsideElement(e.offsetX, e.offsetY)){
         console.log("Hi");
 
+        this.environment.animating = false;
         this.draggedElement = element;
         this.canvas.addEventListener('mousemove', this.handleDrag);
         this.canvas.addEventListener('mouseup', this.handleDrop);
@@ -33,6 +35,7 @@ class MouseTracker{
     console.log(e.offsetX);
     console.log(e.offsetY);
     
+    this.environment.animating = true;
     this.draggedElement.droppedElement();
     this.draggedElement = undefined;
     this.canvas.removeEventListener('mousemove', this.handleDrag);

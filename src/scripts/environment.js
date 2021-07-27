@@ -12,7 +12,7 @@ class Environment{
     
     this.animating = true;
 
-    this.mouseTracker = new MouseTracker(this.canvas, this.elements);
+    this.mouseTracker = new MouseTracker(this, this.elements);
 
     this.render = this.render.bind(this);
   }
@@ -36,14 +36,14 @@ class Environment{
   }
 
   render(timestamp){
-    if(this.animating && this.elements.length > 0){
+    if(this.elements.length > 0){
       if(this.clock){
-        this.clock.render();
+        this.clock.render(this.animating);
       }
 
       this.resizeCanvasToDisplaySize();
   
-      this.elements.forEach(element => element.render());
+      this.elements.forEach(element => element.render(this.animating));
     }
     
     window.requestAnimationFrame(this.render);

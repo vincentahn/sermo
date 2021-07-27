@@ -86,8 +86,10 @@ class Clock{
     this.context.restore();
   }
 
-  render(){
-    this.updateTime();
+  render(animating){
+    if(animating){
+      this.updateTime();
+    }
 
     this.clearCanvas();
     this.drawBorder();

@@ -42,10 +42,12 @@ class Triangle extends Element{
     this.context.fill();
   }
   
-  render(){
+  render(animating){
     this.context.save();
 
-    this.updatePosition();
+    if(animating){
+      this.updatePosition();
+    }
     
     this.confirmMax();
     this.confirmInBounds();
