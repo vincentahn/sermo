@@ -40,9 +40,9 @@ class Environment{
       this.resizeCanvasToDisplaySize();
   
       this.elements.forEach(element => element.render());
-      
-      window.requestAnimationFrame(this.render);
     }
+    
+    window.requestAnimationFrame(this.render);
   }
 
   run(){
