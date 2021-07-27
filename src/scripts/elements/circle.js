@@ -3,6 +3,8 @@ import Element from "./element";
 class Circle extends Element{
   constructor(canvas){
     super(canvas);
+
+    this.radius = 30;
   }
 
   updatePosition(){
@@ -11,23 +13,23 @@ class Circle extends Element{
   }
 
   confirmInBounds(){
-    if(this.posX >= this.maxWidth){
-      this.posX -= this.maxWidth;
-    }else if (this.posX <= 0){
-      this.posX += this.maxWidth;
+    if(this.posX >= (this.maxWidth + this.radius)){
+      this.posX -= this.maxWidth + this.radius;
+    }else if ((this.posX + this.radius) <= 0){
+      this.posX += this.maxWidth + this.radius;
     }
 
-    if(this.posY >= this.maxHeight){
-      this.posY -= this.maxHeight;
-    }else if (this.posY <= 0){
-      this.posY += this.maxHeight;
+    if(this.posY >= this.maxHeight + this.radius){
+      this.posY -= this.maxHeight + this.radius;
+    }else if ((this.posY + this.radius) <= 0){
+      this.posY += this.maxHeight + this.radius;
     }
   }
 
   draw(){
     this.context.beginPath();
     this.context.fillStyle = this.color;
-    this.context.arc(this.posX, this.posY, 30, 0, 2 * Math.PI);
+    this.context.arc(this.posX, this.posY, this.radius, 0, 2 * Math.PI);
     this.context.fill();
   }
 

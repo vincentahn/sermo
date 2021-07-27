@@ -1,5 +1,4 @@
 import ActionList from "./actions";
-import Circle from "./elements/circle";
 
 class Search{
   constructor(hook, environment){

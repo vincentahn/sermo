@@ -1,4 +1,4 @@
-import Clock from "./clock";
+import MouseTracker from "./mouse_tracker";
 
 class Environment{
   constructor(hook){
@@ -7,8 +7,12 @@ class Environment{
     
     this.canvas = document.createElement('canvas');
     this.hook.appendChild(this.canvas);    
-
+    this.canvas.width = this.canvas.parentElement.clientWidth;
+    this.canvas.height = this.canvas.parentElement.clientHeight;
+    
     this.animating = true;
+
+    this.mouseTracker = new MouseTracker(this.canvas, this.elements);
 
     this.render = this.render.bind(this);
   }
