@@ -1,0 +1,104 @@
+class Clock{
+  constructor(hook, environment){
+    this.hook = hook;
+    console.log(this.hook);
+    this.hook.width = 20;
+    this.hook.height = 20;
+    // this.hook.width = 400;
+    // this.hook.height = 400;
+    // this.scaleFactor = this.hook.width / 20;
+    // this.hook.style.width = "20px";
+    // this.hook.style.height = "20px";
+
+    // const start = "200px";
+    // this.hook.style.width = start;
+    // this.hook.style.height = start;
+
+    this.context = this.hook.getContext('2d');
+    this.environment = environment;
+
+    this.radius = 9;
+    this.color = 'rgba(200, 200, 200, 1)';
+    this.posX = this.hook.width / 2;
+    this.posY = this.hook.height / 2;
+    this.hourAngle = 0;
+    this.minuteAngle = 0;
+    this.lineWidth = this.radius * 0.1;
+    this.minuteLength = this.radius - 1;
+    this.hourLength = this.minuteLength / 2;
+
+    this.environment.addClock(this);
+    this.toggleAnimation = this.toggleAnimation.bind(this);
+    this.hook.addEventListener("click", this.toggleAnimation)
+  }
+
+  updateTime(){
+    this.hourAngle++;
+    this.minuteAngle++;
+  }
+
+  clearCanvas(){
+    this.context.clearRect(0, 0, this.hook.width, this.hook.height);
+  }
+
+  drawBorder(){
+    this.context.beginPath();
+    this.context.strokeStyle = this.color;
+    // this.context.arc(0, 0, 9, 0, 2 * Math.PI);
+    this.context.arc(this.posX, this.posY, this.radius, 0, 2 * Math.PI);
+
+    // this.context.scale(this.scaleFactor, this.scaleFactor);
+    // let num = 2;
+    // this.context.scale(num, num);
+
+    this.context.stroke();
+  }
+  
+  drawHourHand(){
+    this.context.save();
+
+    this.context.beginPath();
+    this.context.strokeStyle = this.color;
+    this.context.lineWidth = this.lineWidth;
+    this.context.lineCap = "round";
+    this.context.translate(this.posX, this.posY);
+    this.context.moveTo(0, 0);
+    this.context.rotate(this.hourAngle * Math.PI / (180 * 60));
+    this.context.lineTo(0, this.hourLength);
+    this.context.stroke();
+
+    this.context.restore();
+  }
+
+  drawMinuteHand(){
+    this.context.save();
+
+    this.context.beginPath();
+    this.context.scale(this.scaleFactor, this.scaleFactor);
+    this.context.strokeStyle = this.color;
+    this.context.lineWidth = this.lineWidth;
+    this.context.lineCap = "round";
+    this.context.translate(this.posX, this.posY);
+    this.context.moveTo(0, 0);
+    this.context.rotate(this.minuteAngle * Math.PI / 180);
+    this.context.lineTo(0, this.minuteLength);
+    this.context.stroke();
+
+    this.context.restore();
+  }
+
+  render(){
+    this.updateTime();
+
+    this.clearCanvas();
+    this.drawBorder();
+    this.drawHourHand();
+    this.drawMinuteHand();
+  }
+
+  toggleAnimation(){
+    this.environment.toggleAnimation();
+  }
+};
+
+export default Clock;
