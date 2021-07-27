@@ -4,6 +4,7 @@ class Triangle extends Element{
   constructor(canvas){
     super(canvas);
     this.sideLength = 60;
+    this.altitudeR = this.sideLength * Math.sqrt(3) / 3;
     this.angle = 0; // degree
   }
 
@@ -14,16 +15,16 @@ class Triangle extends Element{
   }
 
   confirmInBounds(){
-    if(this.posX >= this.maxWidth){
-      this.posX -= this.maxWidth;
-    }else if (this.posX <= 0){
-      this.posX += this.maxWidth;
+    if(this.posX >= (this.maxWidth + this.altitudeR)){
+      this.posX -= this.maxWidth + this.altitudeR;
+    }else if ((this.posX + this.altitudeR) <= 0){
+      this.posX += this.maxWidth + this.altitudeR;
     }
 
-    if(this.posY >= this.maxHeight){
-      this.posY -= this.maxHeight;
-    }else if (this.posY <= 0){
-      this.posY += this.maxHeight;
+    if(this.posY >= this.maxHeight + this.altitudeR){
+      this.posY -= this.maxHeight + this.altitudeR;
+    }else if ((this.posY + this.altitudeR) <= 0){
+      this.posY += this.maxHeight + this.altitudeR;
     }
   }
 
@@ -34,12 +35,10 @@ class Triangle extends Element{
     this.context.rotate(this.angle * Math.PI / 180);
     this.context.translate(-this.posX, -this.posY);
 
-    const R = this.sideLength * Math.sqrt(3) / 3;
-
     this.context.beginPath();
-    this.context.moveTo(this.posX - this.sideLength / 2, this.posY - R / 2);
-    this.context.lineTo(this.posX, this.posY + R);
-    this.context.lineTo(this.posX + this.sideLength / 2, this.posY - R / 2);
+    this.context.moveTo(this.posX - this.sideLength / 2, this.posY - this.altitudeR / 2);
+    this.context.lineTo(this.posX, this.posY + this.altitudeR);
+    this.context.lineTo(this.posX + this.sideLength / 2, this.posY - this.altitudeR / 2);
     this.context.fill();
   }
   

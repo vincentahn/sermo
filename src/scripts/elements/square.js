@@ -4,6 +4,7 @@ class Square extends Element{
   constructor(canvas){
     super(canvas);
     this.sideLength = 60;
+    this.cornerLength = this.sideLength / 2 * Math.sqrt(2);
     this.angle = 0; // degree
   }
 
@@ -14,16 +15,16 @@ class Square extends Element{
   }
 
   confirmInBounds(){
-    if(this.posX >= this.maxWidth){
-      this.posX -= this.maxWidth;
-    }else if (this.posX <= 0){
-      this.posX += this.maxWidth;
+    if(this.posX >= (this.maxWidth + this.cornerLength)){
+      this.posX -= this.maxWidth + this.cornerLength;
+    }else if ((this.posX + this.cornerLength) <= 0){
+      this.posX += this.maxWidth + this.cornerLength;
     }
 
-    if(this.posY >= this.maxHeight){
-      this.posY -= this.maxHeight;
-    }else if (this.posY <= 0){
-      this.posY += this.maxHeight;
+    if(this.posY >= this.maxHeight + this.cornerLength){
+      this.posY -= this.maxHeight + this.cornerLength;
+    }else if ((this.posY + this.cornerLength) <= 0){
+      this.posY += this.maxHeight + this.cornerLength;
     }
   }
 
