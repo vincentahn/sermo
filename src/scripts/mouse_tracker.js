@@ -1,14 +1,14 @@
 class MouseTracker{
   constructor(environment, elements){
     this.environment = environment;
-    this.canvas = this.environment.canvas;
+    this.elementCanvas = this.environment.elementCanvas;
     this.elements = elements;
 
     this.handleMouseDown = this.handleMouseDown.bind(this);
     this.handleDrag = this.handleDrag.bind(this);
     this.handleDrop = this.handleDrop.bind(this);
 
-    this.canvas.addEventListener('mousedown', this.handleMouseDown);    
+    this.elementCanvas.addEventListener('mousedown', this.handleMouseDown);    
   }
 
   handleMouseDown(e){
@@ -16,8 +16,8 @@ class MouseTracker{
       if(element.confirmInsideElement(e.offsetX, e.offsetY)){
         this.environment.animating = false;
         this.draggedElement = element;
-        this.canvas.addEventListener('mousemove', this.handleDrag);
-        this.canvas.addEventListener('mouseup', this.handleDrop);
+        this.elementCanvas.addEventListener('mousemove', this.handleDrag);
+        this.elementCanvas.addEventListener('mouseup', this.handleDrop);
         break;
       }
     }
@@ -35,8 +35,8 @@ class MouseTracker{
     
     this.environment.animating = true;
     this.draggedElement = undefined;
-    this.canvas.removeEventListener('mousemove', this.handleDrag);
-    this.canvas.removeEventListener('mouseup', this.handleDrop);
+    this.elementCanvas.removeEventListener('mousemove', this.handleDrag);
+    this.elementCanvas.removeEventListener('mouseup', this.handleDrop);
   }
 };
 

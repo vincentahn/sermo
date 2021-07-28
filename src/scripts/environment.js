@@ -4,11 +4,12 @@ class Environment{
   constructor(hook){
     this.hook = hook;
     this.elements = [];
+    this.alteration = undefined;
     
-    this.canvas = document.createElement('canvas');
-    this.hook.appendChild(this.canvas);    
-    this.canvas.width = this.canvas.parentElement.clientWidth;
-    this.canvas.height = this.canvas.parentElement.clientHeight;
+    this.elementCanvas = document.createElement('canvas');
+    this.hook.appendChild(this.elementCanvas);
+
+    this.resizeCanvasToDisplaySize();
     
     this.animating = true;
 
@@ -28,8 +29,13 @@ class Environment{
   }
 
   resizeCanvasToDisplaySize(){
-    this.canvas.width = this.canvas.parentElement.clientWidth;
-    this.canvas.height = this.canvas.parentElement.clientHeight;
+    this.elementCanvas.width = this.elementCanvas.parentElement.clientWidth;
+    this.elementCanvas.height = this.elementCanvas.parentElement.clientHeight;
+
+    if(this.alterationCanvas){
+      this.alterationCanvas.width = this.alterationCanvas.parentElement.clientWidth;
+      this.alterationCanvas.height = this.alterationCanvas.parentElement.clientHeight;
+    }
   }
   
   toggleAnimation(){
@@ -64,6 +70,22 @@ class Environment{
 
   run(){
     window.requestAnimationFrame(this.render);
+  }
+
+  addAlteration(alteration){
+    this.alteration = alteration;
+    this.animating = false;
+
+    this.alterationCanvas = document.createElement('canvas');
+    this.hook.appendChild(this.alterationCanvas);
+  }
+
+  removeAlteration(){
+    this.alteration = undefined;
+    this.animating = true;
+
+    this.hook.removeChild(this.alterationCanvas);
+    this.alterationCanvas = undefined;
   }
 }
 

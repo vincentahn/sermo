@@ -5,8 +5,9 @@ class Search{
     this.hook = hook;
     this.value = '';
 
-    this.actionlist = new ActionList(environment);
-    this.list = Object.keys(this.actionlist.list);
+    this.actionList = new ActionList(environment);
+    this.elementList = Object.keys(this.actionList.elementList);
+    this.alterationList = Object.keys(this.actionList.alterationList);
 
     this.environment = environment;
 
@@ -22,8 +23,13 @@ class Search{
   }
 
   handleSubmit(e){
-    if (e.code === 'Enter' && this.list.includes(this.value)){
-      this.actionlist.act(this.value);
+    if(e.code === 'Enter'){
+      if (this.elementList.includes(this.value)){
+        this.actionList.create(this.value);
+      }
+      else if(this.alterationList.includes(this.value)){
+        this.actionList.alter(this.value);
+      }
     }
   }
 };

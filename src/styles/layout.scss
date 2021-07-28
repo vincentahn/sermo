@@ -25,6 +25,10 @@ body{
   height: 50vh;
   position: relative;
   width: 50vh;
+
+  canvas{
+    position: absolute;
+  }
 }
 
 .user-input-container{
