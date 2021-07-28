@@ -36,7 +36,6 @@ class MouseTracker{
     console.log(e.offsetY);
     
     this.environment.animating = true;
-    this.draggedElement.droppedElement();
     this.draggedElement = undefined;
     this.canvas.removeEventListener('mousemove', this.handleDrag);
     this.canvas.removeEventListener('mouseup', this.handleDrop);
