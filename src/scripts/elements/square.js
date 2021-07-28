@@ -4,7 +4,7 @@ class Square extends Element{
   constructor(canvas){
     super(canvas);
     this.sideLength = 60;
-    this.cornerLength = this.sideLength / 2 * Math.sqrt(2);
+    this.cornerLength = this.sideLength / Math.sqrt(2);
     this.angle = 0; // degree
   }
 
@@ -38,6 +38,10 @@ class Square extends Element{
     const topLeftX = this.posX - this.sideLength / 2;
     const topLeftY = this.posY - this.sideLength / 2;
     this.context.fillRect(topLeftX, topLeftY, this.sideLength, this.sideLength);
+
+    const amplitude = this.sideLength / Math.sqrt(2);
+    const fortyFiveOffset = 45 * Math.PI / 180;
+    const angleRadians = this.angle * Math.PI / 180;
   }
   
   render(animating){
@@ -56,6 +60,7 @@ class Square extends Element{
   }
 
   confirmInsideElement(x, y){
+    // Useful algorithm found in https://math.stackexchange.com/questions/2157931/how-to-check-if-a-point-is-inside-a-square-2d-plane
     const amplitude = this.sideLength / Math.sqrt(2);
     const fortyFiveOffset = 45 * Math.PI / 180;
     const angleRadians = this.angle * Math.PI / 180;
@@ -86,11 +91,9 @@ class Square extends Element{
     function scalarProduct(vec1, vec2){
       return vec1[0] * vec2[0] + vec1[1] * vec2[1];
     }
-
-    // debugger;
-
-    // Confirm that AM * AB < AB squared and DM * AD < AD squared (which confirms that point is in circle)
-    return scalarProduct(aToM, aToB) < scalarProduct(aToB, aToB) && scalarProduct(aToM, aToD) < scalarProduct(aToD, aToD);
+    
+    // Confirm that 0 < AM * AB < AB squared and 0 < DM * AD < AD squared (which confirms that point is in circle)
+    return scalarProduct(aToM, aToB) > 0 && scalarProduct(aToM, aToB) < scalarProduct(aToB, aToB) && scalarProduct(aToM, aToD) > 0 && scalarProduct(aToM, aToD) < scalarProduct(aToD, aToD);
   }
 };
 

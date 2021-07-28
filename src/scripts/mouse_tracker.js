@@ -12,10 +12,8 @@ class MouseTracker{
   }
 
   handleMouseDown(e){
-    for(let element of this.elements){
+    for(const element of this.elements){
       if(element.confirmInsideElement(e.offsetX, e.offsetY)){
-        console.log("Hi");
-
         this.environment.animating = false;
         this.draggedElement = element;
         this.canvas.addEventListener('mousemove', this.handleDrag);
