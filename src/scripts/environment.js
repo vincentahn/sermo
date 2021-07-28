@@ -17,6 +17,12 @@ class Environment{
     this.render = this.render.bind(this);
   }
 
+  resetElements(){
+    this.elements = [];
+    this.resizeCanvasToDisplaySize();
+    this.animating = false;
+  }
+
   addClock(clock){
     this.clock = clock;
   }
@@ -27,11 +33,18 @@ class Environment{
   }
   
   toggleAnimation(){
-    this.animating = !this.animating;
+    if(this.elements.length > 0){
+      this.animating = !this.animating;
+    }
+
     console.log(this.animating);
   }
 
   insertElement(element){
+    if(this.elements.length === 0){
+      this.animating = true;
+    }
+
     this.elements.push(element);
   }
 
