@@ -5,14 +5,67 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <!-- Google Font API -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Roboto:wght@100;400&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="./dist/main.css" />
+
+    <!-- Font Awesome API -->
     <script defer src="./node_modules/@fortawesome/fontawesome-free/js/all.js"></script>
+
     <script src="./dist/main.js"></script>
     <title>Sermo</title>
 </head>
 
 <body>
   <div class="main">
+    <div class="about-modal" id="about-modal-id">
+      <div class="close-button" id="about-close-button">
+        <i class="fas fa-times"></i>
+      </div>
+      <div class="about-info">
+        <div class="about-info-text-container">
+          <div>
+            <p>
+              In SERMO, words have power. 
+            </p>
+          </div>
+
+          <div>
+            <p>
+              Type shapes like <span>circle</span> or <span>square</span> and give them form.
+            </p>
+          </div>
+
+          <div>
+            <p>
+              Type alterations like <span>left</span> or <span>color</span> to cause a shape to move or change its color respectively.
+            </p>
+          </div>
+
+          <div>
+            <p>
+              Arrow icon made by <a href="https://roundicons.com/" title="Roundicons">Roundicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+            </p>
+          </div>
+  
+          <div>
+            <p>
+              Color pipet icon made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+            </p>
+          </div>
+
+          <div>
+            <p>
+              Made by <a href="https://github.com/vincentahn">Vincent Ahn</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="title">
       <h1>S E R M O</h1>
     </div>
@@ -36,7 +89,9 @@
       </div>
       <div class="right-link-bar">
         <div class="link-icon">
-          <i class="fas fa-clipboard-list"></i>
+          <div id="open-about-modal">
+            <i class="fas fa-clipboard-list"></i>
+          </div>
         </div>
         <div class="link-icon">
           <a href="https://github.com/vincentahn/sermo">
@@ -57,9 +112,6 @@
       </div>
     </div>
   </div>
-
-  <!-- <div>Arrow icons made by <a href="https://roundicons.com/" title="Roundicons">Roundicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> -->
-  <!-- <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> -->
 </body>
 
 </html>
