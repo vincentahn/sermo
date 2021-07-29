@@ -37,7 +37,7 @@ class ActionList{
     let alterationCanvas = this.environment.addAlterationCanvas();
 
     const random255 = () => {
-      return Math.floor(Math.random() * 123) + 123;
+      return Math.floor(Math.random() * 128) + 128;
     }
 
     let color = `rgb(${random255()}, ${random255()}, ${random255()}`;
