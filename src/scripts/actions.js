@@ -36,7 +36,11 @@ class ActionList{
   alter(input){
     let alterationCanvas = this.environment.addAlterationCanvas();
 
-    let color = 'red';
+    const random255 = () => {
+      return Math.floor(Math.random() * 123) + 123;
+    }
+
+    let color = `rgb(${random255()}, ${random255()}, ${random255()}`;
     let newAlteration;
 
     if(input === 'color'){
