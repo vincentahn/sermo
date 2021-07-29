@@ -5,6 +5,7 @@ import DownMove from "./alterations/down_move";
 import LeftMove from "./alterations/left_move";
 import RightMove from "./alterations/right_move";
 import UpMove from "./alterations/up_move";
+import Color from './alterations/color';
 
 class ActionList{
   constructor(environment){
@@ -15,6 +16,7 @@ class ActionList{
     };
     
     this.alterationList = {
+      color: Color,
       down: DownMove,
       left: LeftMove,
       right: RightMove,
@@ -33,7 +35,16 @@ class ActionList{
 
   alter(input){
     let alterationCanvas = this.environment.addAlterationCanvas();
-    let newAlteration = new this.alterationList[input](alterationCanvas);
+
+    let color = 'red';
+    let newAlteration;
+
+    if(input === 'color'){
+      newAlteration = new this.alterationList[input](alterationCanvas, color);
+    }else{
+      newAlteration = new this.alterationList[input](alterationCanvas);
+    }
+
     this.environment.insertAlteration(newAlteration);
   }
 };

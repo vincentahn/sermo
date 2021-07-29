@@ -80,9 +80,12 @@ class MouseTracker{
         this.alterationCanvas.removeEventListener('mouseup', this.handleAlterationDrop);
         this.environment.removeAlteration();
 
-        break;
+        return;
       }
     }
+
+    this.alterationCanvas.removeEventListener('mousemove', this.handleAlterationDrag);
+    this.alterationCanvas.removeEventListener('mouseup', this.handleAlterationDrop);
   }
 };
 
