@@ -1,8 +1,7 @@
 class MouseTracker{
-  constructor(environment, elements){
+  constructor(environment){
     this.environment = environment;
     this.elementCanvas = this.environment.elementCanvas;
-    this.elements = elements;
 
     this.handleElementMouseDown = this.handleElementMouseDown.bind(this);
     this.handleElementDrag = this.handleElementDrag.bind(this);
@@ -16,7 +15,7 @@ class MouseTracker{
   }
   
   handleElementMouseDown(e){
-    for(const element of this.elements){
+    for(const element of this.environment.elements){
       if(element.confirmInsideElement(e.offsetX, e.offsetY)){
         this.environment.animating = false;
         this.draggedElement = element;
@@ -47,7 +46,7 @@ class MouseTracker{
   }
 
   handleAlterationMouseDown(e){
-    // for(const element of this.elements){
+    // for(const element of this.environment.elements){
     //   if(element.confirmInsideElement(e.offsetX, e.offsetY)){
     //     this.environment.animating = false;
     //     this.draggedElement = element;
@@ -57,7 +56,7 @@ class MouseTracker{
     //   }
     // }
 
-    console.log("Alteration Canvas clicked")
+    console.log("Alteration Canvas clicked");
 
     if(this.draggedAlteration.confirmInsideAlteration(e.offsetX, e.offsetY)){
       this.alterationCanvas.addEventListener('mousemove', this.handleAlterationDrag);
@@ -71,7 +70,9 @@ class MouseTracker{
   }
   
   handleAlterationDrop(e){
-    for(const element of this.elements){
+    debugger;
+
+    for(const element of this.environment.elements){
       if(element.confirmInsideElement(e.offsetX, e.offsetY)){
         element.addAlteration(this.draggedAlteration);
         

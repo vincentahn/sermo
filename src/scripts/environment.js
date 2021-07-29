@@ -13,7 +13,7 @@ class Environment{
     
     this.animating = true;
 
-    this.mouseTracker = new MouseTracker(this, this.elements);
+    this.mouseTracker = new MouseTracker(this);
 
     this.render = this.render.bind(this);
   }

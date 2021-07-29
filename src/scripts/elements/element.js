@@ -16,7 +16,7 @@ class Element{
     this.size = 60;
     this.offsetX = 0;
     this.offsetY = 0;
-    this.angle = 60; // degree
+    this.angle = 0; // degree
   }
 
   getRandom(num){
