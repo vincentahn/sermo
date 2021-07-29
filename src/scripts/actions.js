@@ -26,7 +26,9 @@ class ActionList{
   }
 
   alter(input){
-    let newAlteration = new this.alterationList[input](this.environment.alterationCanvas);
+    let alterationCanvas = this.environment.addAlterationCanvas();
+    let newAlteration = new this.alterationList[input](alterationCanvas);
+    this.environment.insertAlteration(newAlteration);
   }
 };
 

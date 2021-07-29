@@ -10,6 +10,7 @@ class MouseTracker{
 
     this.elementCanvas.addEventListener('mousedown', this.handleMouseDown);    
   }
+  // Need to add MouseTracker methods for Alteration class
 
   handleMouseDown(e){
     for(const element of this.elements){

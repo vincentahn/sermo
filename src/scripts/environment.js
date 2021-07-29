@@ -61,6 +61,10 @@ class Environment{
       }
 
       this.resizeCanvasToDisplaySize();
+
+      if(this.alteration){
+        this.alteration.render();
+      }
   
       this.elements.forEach(element => element.render(this.animating));
     }
@@ -72,12 +76,16 @@ class Environment{
     window.requestAnimationFrame(this.render);
   }
 
-  addAlteration(alteration){
-    this.alteration = alteration;
-    this.animating = false;
-
+  addAlterationCanvas(){
     this.alterationCanvas = document.createElement('canvas');
     this.hook.appendChild(this.alterationCanvas);
+
+    return this.alterationCanvas;
+  }
+
+  insertAlteration(alteration){
+    this.alteration = alteration;
+    this.animating = false;
   }
 
   removeAlteration(){
