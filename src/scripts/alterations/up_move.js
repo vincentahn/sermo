@@ -1,19 +1,19 @@
 import Move from "./move";
 
-class RightMove extends Move{
+class UpMove extends Move{
   constructor(canvas){
     super(canvas);
 
-    this.angle = 0;
+    this.angle = 270;
   }
 
   morphElement(element){
-    element.offsetX++;
+    element.offsetY--;
   }
 
   update(element){
-    element.posX += element.offsetX;
+    element.posY += element.offsetY;
   }
 };
 
-export default RightMove;
+export default UpMove;

@@ -82,10 +82,11 @@ class Environment{
 
     return this.alterationCanvas;
   }
-
+  
   insertAlteration(alteration){
     this.alteration = alteration;
     this.animating = false;
+    this.mouseTracker.addAlterationCanvas(this.alterationCanvas);
   }
 
   removeAlteration(){

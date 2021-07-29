@@ -1,14 +1,14 @@
 import Move from "./move";
 
-class RightMove extends Move{
+class LeftMove extends Move{
   constructor(canvas){
     super(canvas);
 
-    this.angle = 0;
+    this.angle = 180;
   }
 
   morphElement(element){
-    element.offsetX++;
+    element.offsetX--;
   }
 
   update(element){
@@ -16,4 +16,4 @@ class RightMove extends Move{
   }
 };
 
-export default RightMove;
+export default LeftMove;

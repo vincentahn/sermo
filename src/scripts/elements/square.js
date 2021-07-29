@@ -3,28 +3,22 @@ import Element from "./element";
 class Square extends Element{
   constructor(canvas){
     super(canvas);
-    this.sideLength = 60;
-    this.cornerLength = this.sideLength / Math.sqrt(2);
-    this.angle = 0; // degree
-  }
-
-  updatePosition(){
-    this.posX++;
-    this.posY++;
-    this.angle++;
+    this.size = 60;
   }
 
   confirmInBounds(){
-    if(this.posX >= (this.maxWidth + this.cornerLength)){
-      this.posX -= this.maxWidth + this.cornerLength;
-    }else if ((this.posX + this.cornerLength) <= 0){
-      this.posX += this.maxWidth + this.cornerLength;
+    const cornerLength = this.size / Math.sqrt(2);
+
+    if(this.posX >= (this.maxWidth + cornerLength)){
+      this.posX -= this.maxWidth + cornerLength;
+    }else if ((this.posX + cornerLength) <= 0){
+      this.posX += this.maxWidth + cornerLength;
     }
 
-    if(this.posY >= this.maxHeight + this.cornerLength){
-      this.posY -= this.maxHeight + this.cornerLength;
-    }else if ((this.posY + this.cornerLength) <= 0){
-      this.posY += this.maxHeight + this.cornerLength;
+    if(this.posY >= this.maxHeight + cornerLength){
+      this.posY -= this.maxHeight + cornerLength;
+    }else if ((this.posY + cornerLength) <= 0){
+      this.posY += this.maxHeight + cornerLength;
     }
   }
 
@@ -35,11 +29,11 @@ class Square extends Element{
     this.context.rotate(this.angle * Math.PI / 180);
     this.context.translate(-this.posX, -this.posY);
 
-    const topLeftX = this.posX - this.sideLength / 2;
-    const topLeftY = this.posY - this.sideLength / 2;
-    this.context.fillRect(topLeftX, topLeftY, this.sideLength, this.sideLength);
+    const topLeftX = this.posX - this.size / 2;
+    const topLeftY = this.posY - this.size / 2;
+    this.context.fillRect(topLeftX, topLeftY, this.size, this.size);
 
-    const amplitude = this.sideLength / Math.sqrt(2);
+    const amplitude = this.size / Math.sqrt(2);
     const fortyFiveOffset = 45 * Math.PI / 180;
     const angleRadians = this.angle * Math.PI / 180;
   }
@@ -48,7 +42,7 @@ class Square extends Element{
     this.context.save();
 
     if(animating){
-      this.updatePosition();
+      this.update();
     }
     
     this.confirmMax();
@@ -61,7 +55,7 @@ class Square extends Element{
 
   confirmInsideElement(x, y){
     // Useful algorithm found in https://math.stackexchange.com/questions/2157931/how-to-check-if-a-point-is-inside-a-square-2d-plane
-    const amplitude = this.sideLength / Math.sqrt(2);
+    const amplitude = this.size / Math.sqrt(2);
     const fortyFiveOffset = 45 * Math.PI / 180;
     const angleRadians = this.angle * Math.PI / 180;
 

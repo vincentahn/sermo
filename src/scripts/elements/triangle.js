@@ -3,32 +3,28 @@ import Element from "./element";
 class Triangle extends Element{
   constructor(canvas){
     super(canvas);
-    this.sideLength = 60;
-    this.altitudeR = this.sideLength / Math.sqrt(3);
-    this.angle = 0; // degree
-  }
-
-  updatePosition(){
-    this.posX++;
-    this.posY++;
-    this.angle++;
+    this.size = 60;
   }
 
   confirmInBounds(){
-    if(this.posX >= (this.maxWidth + this.altitudeR)){
-      this.posX -= this.maxWidth + this.altitudeR;
-    }else if ((this.posX + this.altitudeR) <= 0){
-      this.posX += this.maxWidth + this.altitudeR;
+    const altitudeR = this.size / Math.sqrt(3);
+
+    if(this.posX >= (this.maxWidth + altitudeR)){
+      this.posX -= this.maxWidth + altitudeR;
+    }else if ((this.posX + altitudeR) <= 0){
+      this.posX += this.maxWidth + altitudeR;
     }
 
-    if(this.posY >= this.maxHeight + this.altitudeR){
-      this.posY -= this.maxHeight + this.altitudeR;
-    }else if ((this.posY + this.altitudeR) <= 0){
-      this.posY += this.maxHeight + this.altitudeR;
+    if(this.posY >= this.maxHeight + altitudeR){
+      this.posY -= this.maxHeight + altitudeR;
+    }else if ((this.posY + altitudeR) <= 0){
+      this.posY += this.maxHeight + altitudeR;
     }
   }
 
   draw(){
+    const altitudeR = this.size / Math.sqrt(3);
+
     this.context.fillStyle = this.color;
 
     this.context.translate(this.posX, this.posY);
@@ -36,9 +32,9 @@ class Triangle extends Element{
     this.context.translate(-this.posX, -this.posY);
 
     this.context.beginPath();
-    this.context.moveTo(this.posX - this.sideLength / 2, this.posY - this.altitudeR / 2);
-    this.context.lineTo(this.posX, this.posY + this.altitudeR);
-    this.context.lineTo(this.posX + this.sideLength / 2, this.posY - this.altitudeR / 2);
+    this.context.moveTo(this.posX - this.size / 2, this.posY - altitudeR / 2);
+    this.context.lineTo(this.posX, this.posY + altitudeR);
+    this.context.lineTo(this.posX + this.size / 2, this.posY - altitudeR / 2);
     this.context.fill();
   }
   
@@ -46,7 +42,7 @@ class Triangle extends Element{
     this.context.save();
 
     if(animating){
-      this.updatePosition();
+      this.update();
     }
     
     this.confirmMax();
@@ -60,10 +56,11 @@ class Triangle extends Element{
   confirmInsideElement(x, y){
     // Algorithm for calculating points of triangle after rotation in https://gamedev.stackexchange.com/questions/86755/how-to-calculate-corner-positions-marks-of-a-rotated-tilted-rectangle
     // Incredible algorithm for detecting cursor in triangle found in http://totologic.blogspot.com/2014/01/accurate-point-in-triangle-test.html
+    const altitudeR = this.size / Math.sqrt(3);
 
-    let p1 = [this.posX - this.sideLength / 2, this.posY - this.altitudeR / 2];
-    let p2 = [this.posX, this.posY + this.altitudeR];
-    let p3 = [this.posX + this.sideLength / 2, this.posY - this.altitudeR / 2];
+    let p1 = [this.posX - this.size / 2, this.posY - altitudeR / 2];
+    let p2 = [this.posX, this.posY + altitudeR];
+    let p3 = [this.posX + this.size / 2, this.posY - altitudeR / 2];
 
     let tempP1 = [p1[0] - this.posX, p1[1] - this.posY];
     let tempP2 = [p2[0] - this.posX, p2[1] - this.posY];
