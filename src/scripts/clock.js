@@ -22,7 +22,11 @@ class Clock{
 
     this.environment.addClock(this);
     this.toggleAnimation = this.toggleAnimation.bind(this);
+    this.brighten = this.brighten.bind(this);
+    this.dim = this.dim.bind(this);
     this.hook.addEventListener("click", this.toggleAnimation);
+    this.hook.addEventListener('mouseover', this.brighten);
+    this.hook.addEventListener('mouseout', this.dim);
 
     this.render();
   }
@@ -99,6 +103,16 @@ class Clock{
 
   toggleAnimation(){
     this.environment.toggleAnimation();
+  }
+
+  brighten(){
+    this.color = 'white';
+    this.render(false);
+  }
+
+  dim(){
+    this.color = 'rgba(200, 200, 200, 1)';
+    this.render(false);
   }
 };
 

@@ -4,8 +4,12 @@
   position: relative;
   text-align: center;
   
-  svg:hover{
+  i:hover{
     color: rgba(250, 250, 250, 1);
     cursor: pointer;
   }
+}
+
+#clock-canvas:hover{
+  cursor: pointer;
 }
