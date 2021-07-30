@@ -8,6 +8,7 @@ class Element{
 
     this.posX = this.maxWidth / 2;
     this.posY = this.maxHeight;
+    this.angle = 0; // degree
 
     this.alterations = [];
 
@@ -20,7 +21,6 @@ class Element{
     this.size = 60;
     this.offsetX = 0;
     this.offsetY = 0;
-    this.angle = 0; // degree
     this.offsetAngle = 0;
   }
 

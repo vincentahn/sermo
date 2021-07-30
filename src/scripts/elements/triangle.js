@@ -4,13 +4,6 @@ class Triangle extends Element{
   constructor(canvas){
     super(canvas);
     this.size = 60;
-  }
-
-  _resetToDefault(){
-    this.color = 'rgba(200, 200, 200, 1)';
-    this.size = 60;
-    this.offsetX = 0;
-    this.offsetY = 0;
     this.angle = 60; // degree
   }
 
