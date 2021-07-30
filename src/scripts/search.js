@@ -21,7 +21,7 @@ class Search{
   handleChange(){
     this.value = this.hook.value;
 
-    if (this.environment.alteration && this.alterationList.includes(this.value)){
+    if (this.environment.alteration && this.alterationList.includes(this.value)  && this.environment.elements.length === 0){
       this.hook.classList.add('reject-input');
     }else if(this.elementList.includes(this.value) || this.alterationList.includes(this.value)){
       this.hook.classList.add('matching-input');
@@ -35,7 +35,7 @@ class Search{
       if (this.elementList.includes(this.value)){
         this.actionList.create(this.value);
       }
-      else if(this.alterationList.includes(this.value) && !this.environment.alteration){
+      else if(this.alterationList.includes(this.value) && !this.environment.alteration && this.environment.elements.length !== 0){
         this.actionList.alter(this.value);
       }
     }
