@@ -47,8 +47,6 @@ class Environment{
     if(this.elements.length > 0){
       this.animating = !this.animating;
     }
-
-    console.log(this.animating);
   }
 
   insertElement(element){
