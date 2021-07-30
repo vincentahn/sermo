@@ -47,19 +47,8 @@ class MouseTracker{
   }
 
   handleAlterationMouseDown(e){
-    // for(const element of this.environment.elements){
-    //   if(element.confirmInsideElement(e.offsetX, e.offsetY)){
-    //     this.environment.animating = false;
-    //     this.draggedElement = element;
-    //     this.elementCanvas.addEventListener('mousemove', this.handleElementDrag);
-    //     this.elementCanvas.addEventListener('mouseup', this.handleElementDrop);
-    //     break;
-    //   }
-    // }
-
-    console.log("Alteration Canvas clicked");
-
     if(this.draggedAlteration.confirmInsideAlteration(e.offsetX, e.offsetY)){
+      this.draggedAlteration.creationFrameCount = this.draggedAlteration.finishFrames;
       this.alterationCanvas.addEventListener('mousemove', this.handleAlterationDrag);
       this.alterationCanvas.addEventListener('mouseup', this.handleAlterationDrop)
     }
@@ -71,15 +60,11 @@ class MouseTracker{
   }
   
   handleAlterationDrop(e){
-    debugger;
-
     for(const element of this.environment.elements){
       if(element.confirmInsideElement(e.offsetX, e.offsetY)){
         element.addAlteration(this.draggedAlteration);
-        
-        this.draggedAlteration = undefined;
-        this.alterationCanvas.removeEventListener('mousemove', this.handleAlterationDrag);
-        this.alterationCanvas.removeEventListener('mouseup', this.handleAlterationDrop);
+
+        this.removeAlteration();
         this.environment.removeAlteration();
 
         return;
@@ -88,6 +73,14 @@ class MouseTracker{
 
     this.alterationCanvas.removeEventListener('mousemove', this.handleAlterationDrag);
     this.alterationCanvas.removeEventListener('mouseup', this.handleAlterationDrop);
+  }
+
+  removeAlteration(){
+    if(this.draggedAlteration){
+      this.draggedAlteration = undefined;
+      this.alterationCanvas.removeEventListener('mousemove', this.handleAlterationDrag);
+      this.alterationCanvas.removeEventListener('mouseup', this.handleAlterationDrop);
+    }
   }
 };
 

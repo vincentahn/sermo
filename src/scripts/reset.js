@@ -8,7 +8,7 @@ class Reset{
   }
 
   handleReset(e){
-    this.environment.resetElements();
+    this.environment.reset();
   }
 };
 

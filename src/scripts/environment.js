@@ -18,10 +18,15 @@ class Environment{
     this.render = this.render.bind(this);
   }
 
-  resetElements(){
+  reset(){
     this.elements = [];
     this.resizeCanvasToDisplaySize();
     this.animating = false;
+
+    if(this.alteration){
+      this.removeAlteration();
+      this.mouseTracker.removeAlteration();
+    }
   }
 
   addClock(clock){
@@ -79,6 +84,8 @@ class Environment{
   addAlterationCanvas(){
     this.alterationCanvas = document.createElement('canvas');
     this.hook.appendChild(this.alterationCanvas);
+
+    this.resizeCanvasToDisplaySize();
 
     return this.alterationCanvas;
   }

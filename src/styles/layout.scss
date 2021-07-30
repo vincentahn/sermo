@@ -42,6 +42,7 @@ body{
     color: rgba(200, 200, 200, 1);
     font-family: 'Orbitron', sans-serif;
     font-size: 20px;
+    outline: none;
     padding: 10px;
     text-align: center;
     width: 100%;
@@ -54,11 +55,11 @@ body{
 
 .matching-input{
   animation-duration: 1s;
-  animation-name: rotating-box-shadow;
+  animation-name: matching-input-shadow;
   animation-iteration-count: infinite;
 }
 
-@keyframes rotating-box-shadow{
+@keyframes matching-input-shadow{
   from{
     box-shadow: 0 0 0 rgba(200, 200, 200, 1) inset;
   }
@@ -69,5 +70,25 @@ body{
 
   to{
     box-shadow: 0 0 0 rgba(200, 200, 200, 1) inset;
+  }
+}
+
+.reject-input{
+  animation-duration: 1s;
+  animation-name: reject-input-shadow;
+  animation-iteration-count: infinite;
+}
+
+@keyframes reject-input-shadow{
+  from{
+    box-shadow: 0 0 0 rgba(255, 0, 0, 1) inset;
+  }
+
+  50%{
+    box-shadow: 0 0 8px rgba(255, 0, 0, 1) inset;
+  }
+
+  to{
+    box-shadow: 0 0 0 rgba(255, 0, 0, 1) inset;
   }
 }

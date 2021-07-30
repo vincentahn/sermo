@@ -26,10 +26,10 @@ class Move extends Alteration{
   
   render(){
     if(this.ready){
+      this.creationAnimation();
+      
       this.context.save();
-  
       this.draw();
-  
       this.context.restore();
     }
   }
