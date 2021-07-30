@@ -6,6 +6,8 @@ import LeftMove from "./alterations/left_move";
 import RightMove from "./alterations/right_move";
 import UpMove from "./alterations/up_move";
 import Color from './alterations/color';
+import Clockwise from './alterations/clockwise';
+import CounterClockwise from './alterations/counter-clockwise';
 
 class ActionList{
   constructor(environment){
@@ -17,6 +19,8 @@ class ActionList{
     
     this.alterationList = {
       color: Color,
+      clockwise: Clockwise,
+      'counter clockwise': CounterClockwise,
       down: DownMove,
       left: LeftMove,
       right: RightMove,

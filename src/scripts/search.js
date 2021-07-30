@@ -36,6 +36,7 @@ class Search{
         this.actionList.create(this.value);
       }
       else if(this.alterationList.includes(this.value) && !this.environment.alteration && this.environment.elements.length !== 0){
+        console.log(this.environment.elements);
         this.actionList.alter(this.value);
       }
     }
