@@ -17,6 +17,7 @@ class MouseTracker{
   handleElementMouseDown(e){
     for(const element of this.environment.elements){
       if(element.confirmInsideElement(e.offsetX, e.offsetY)){
+        element.creationFrameCount = element.finishFrames;
         this.environment.animating = false;
         this.draggedElement = element;
         this.elementCanvas.addEventListener('mousemove', this.handleElementDrag);

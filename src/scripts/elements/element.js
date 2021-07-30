@@ -2,13 +2,17 @@ class Element{
   constructor(canvas){
     this.canvas = canvas;
     this.context = this.canvas.getContext('2d');
-    this.posX = this.getRandom(450);
-    this.posY = this.getRandom(450);
     
     this.maxWidth = this.canvas.width;
     this.maxHeight = this.canvas.height;
 
+    this.posX = this.maxWidth / 2;
+    this.posY = this.maxHeight;
+
     this.alterations = [];
+
+    this.creationFrameCount = 0;
+    this.finishFrames = this.maxHeight / 2;
   }
   
   _resetToDefault(){
@@ -29,8 +33,16 @@ class Element{
   }
 
   addAlteration(alteration){
+    this.creationFrameCount = this.finishFrames;
     this.alterations.push(alteration);
     alteration.morphElement(this);
+  }
+
+  creationAnimation(){
+    if(this.creationFrameCount < this.finishFrames){
+      this.posY--;
+      this.creationFrameCount++;
+    }
   }
 
   update(){
@@ -40,6 +52,7 @@ class Element{
       }
     }else{
       this._resetToDefault();
+      this.creationAnimation();
     }
   }
 };

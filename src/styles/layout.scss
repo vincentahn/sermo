@@ -51,3 +51,23 @@ body{
     border: 1px solid rgba(200, 200, 200, 1);
   }
 }
+
+.matching-input{
+  animation-duration: 1s;
+  animation-name: rotating-box-shadow;
+  animation-iteration-count: infinite;
+}
+
+@keyframes rotating-box-shadow{
+  from{
+    box-shadow: 0 0 0 rgba(200, 200, 200, 1) inset;
+  }
+
+  50%{
+    box-shadow: 0 0 8px rgba(200, 200, 200, 1) inset;
+  }
+
+  to{
+    box-shadow: 0 0 0 rgba(200, 200, 200, 1) inset;
+  }
+}

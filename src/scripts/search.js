@@ -20,6 +20,12 @@ class Search{
 
   handleChange(){
     this.value = this.hook.value;
+
+    if (this.elementList.includes(this.value) || this.alterationList.includes(this.value)){
+      this.hook.classList.add('matching-input');
+    }else{
+      this.hook.classList.remove('matching-input');
+    }
   }
 
   handleSubmit(e){
