@@ -2,6 +2,8 @@
 
 ## Background
 
+<img src="https://cdn.discordapp.com/attachments/863876583714455553/871922994539294740/unknown.png">
+
 [Sermo](https://vincentahn.github.io/sermo/) is an interactive website where users can create and alter shapes through the use of a text input. Users can create circles, squares, etc. and create "alterations" that can be used to move shapes or change said shapes however they please. For example, typing "red" will print out an "alteration" that can be dragged towards a shape and change its color.
 
 ## Functionality & MVPs
