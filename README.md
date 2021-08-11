@@ -4,7 +4,7 @@
 
 <img src="https://cdn.discordapp.com/attachments/863876583714455553/871922994539294740/unknown.png">
 
-[Sermo](https://vincentahn.github.io/sermo/) is an interactive website where users can create and alter shapes through the use of a text input. Users can create circles, squares, etc. and create "alterations" that can be used to move shapes or change said shapes however they please. For example, typing "red" will print out an "alteration" that can be dragged towards a shape and change its color.
+[Sermo](https://vincentahn.github.io/sermo/) is an interactive website where users can create and alter shapes through the use of a text input. Users can create circles, squares, etc. and create "alterations" that can be used to move shapes or change said shapes however they please. For example, typing "color" will print out an "alteration" that can be dragged towards a shape and change its color.
 
 ## Functionality & MVPs
 
@@ -13,7 +13,6 @@ In sermo, users will be able to:
 * Alter the shapes' colors and sizes
 * Move the shapes in different directions (up, down, left, right, clockwise, counterclockwise)
 * Pause and reset the environment
-* Insert asteroids easter egg
 
 In addition, this project will include:
 * An **About** modal describing the background of the website and instructions
@@ -71,4 +70,5 @@ In addition, this project will include:
 * Adding ability to break elements into smaller elements (probably need a library?)
 * Add user provided shapes
 * Add my face as shape as easter egg
+* Add shape dodging game as easter egg
 * Music/SFX
