@@ -46,4 +46,23 @@
       text-decoration: underline;
     }
   }
+
+  .arrow-container{
+    position: absolute;
+    font-size: 25px;
+    bottom: 20px;
+  }
+
+  .arrow-container:hover{
+    color: rgba(150, 150, 150, 1);
+    cursor: pointer;
+  }
+
+  .left-arrow-container{
+    left: 20px;
+  }
+
+  .right-arrow-container{
+    right: 20px;
+  }
 }

@@ -3,6 +3,7 @@ import Search from "./scripts/search";
 import Clock from "./scripts/clock";
 import Reset from "./scripts/reset";
 import { setupHomePage } from "./scripts/util/home_page";
+import { plusPage, setupCarousel } from "./scripts/util/about_carousel";
 
 // import testImage from './assets/right-arrow.png';
 
@@ -20,6 +21,10 @@ document.addEventListener('DOMContentLoaded', () => {
   let reset = new Reset(resetHook, environment);
 
   setupHomePage();
+
+  setupCarousel();
+
+  window.plusPage = plusPage;
 
   environment.run();
 });
