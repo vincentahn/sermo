@@ -216,6 +216,20 @@ body {
   cursor: pointer;
 }
 
+.left-link-icon:hover:before {
+  color: #fafafa;
+  content: attr(title);
+  position: absolute;
+  right: 100%;
+}
+
+.right-link-icon:hover:before {
+  color: #fafafa;
+  content: attr(title);
+  position: absolute;
+  left: 100%;
+}
+
 #clock-canvas:hover {
   cursor: pointer;
 }
