@@ -34,9 +34,15 @@ class Search{
     if(e.code === 'Enter'){
       if (this.elementList.includes(this.value)){
         this.actionList.create(this.value);
+        this.hook.value = '';
+        this.value = '';
+        this.hook.classList.remove('matching-input', 'reject-input');
       }
       else if(this.alterationList.includes(this.value) && !(this.environment.alteration || this.environment.elements.length === 0)){
         this.actionList.alter(this.value);
+        this.hook.value = '';
+        this.value = '';
+        this.hook.classList.remove('matching-input', 'reject-input');
       }
     }
   }
