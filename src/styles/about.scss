@@ -1,5 +1,5 @@
 .about-modal{
-  background-color: rgba(100, 100, 100, 0.9);
+  background-color: rgba(100, 100, 100, 0.99);
   border-radius: 2.5%;
   display: none;
   position: absolute;
@@ -48,6 +48,7 @@
   }
 
   .arrow-container{
+    display: flex;
     position: absolute;
     font-size: 25px;
     bottom: 20px;
@@ -60,9 +61,17 @@
 
   .left-arrow-container{
     left: 20px;
+
+    h2{
+      padding: 0 0 0 10px;
+    }
   }
 
   .right-arrow-container{
     right: 20px;
+
+    h2{
+      padding: 0 10px 0 0;
+    }
   }
 }
