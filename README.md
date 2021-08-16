@@ -32,39 +32,71 @@ In addition, this project will include:
 * Webpack and Babel to bundle and transpile Javascript source code
 * npm to manage project dependencies
 
-## Implementaiton Timeline
+## Notable Code
 
-### Monday
+### Cursor-Element Hit Detection
 
-* Basic Layout setup
-  * Include links, basic canvas setup, etc.
-* Canvas API
-  * Create canvas environment
+One of the challenges of this project was implementing an algorithm to determine whether a cursor was within an element or not to detect if it "hit" the element. Calculating the points of an element was usually just busy work but determining how to determine whether the cursor was inside an element usually meant introducing some scalar product logic. Below is an example of the algorithm for determining if a cursor positiion was within a square element.
 
-### Tuesday
+```
+/src/scripts/elements/square.js
 
-* Setup `Search`, `Element` and `Alteration` classes
-* Implement input text into element pop out animation
-* Implement alterations
+confirmInsideElement(x, y){
+  const amplitude = this.size / Math.sqrt(2);
+  const fortyFiveOffset = 45 * Math.PI / 180;
+  const angleRadians = this.angle * Math.PI / 180;
 
-### Wednesday
+  // Calculate position of Point A
+  const posA = [
+    this.posX - amplitude * Math.cos(angleRadians - fortyFiveOffset),
+    this.posY - amplitude * Math.cos(angleRadians + fortyFiveOffset)
+  ];
 
-* User Experience
-  * Ensure animations are smooth and pleasing (i.e. alteration being added to an element)
-* Implement environment reset feature 
+  // Calculate position of Point B
+  const posB = [
+    this.posX - amplitude * Math.cos(angleRadians + fortyFiveOffset),
+    this.posY + amplitude * Math.cos(angleRadians - fortyFiveOffset)
+  ];
 
-### Thursday
+  // Calculate position of Point D
+  const posD = [
+    this.posX + amplitude * Math.cos(angleRadians + fortyFiveOffset),
+    this.posY - amplitude * Math.cos(angleRadians - fortyFiveOffset)
+  ];
 
-* If no bugs, begin asteroid implementation
+  // Calculate vectors of AM, AB, and AD
+  const aToM = [x - posA[0], y - posA[1]]
+  const aToB = [posB[0] - posA[0], posB[1] - posA[1]];
+  const aToD = [posD[0] - posA[0], posD[1] - posA[1]];
 
-### Friday
+  function scalarProduct(vec1, vec2){
+    return vec1[0] * vec2[0] + vec1[1] * vec2[1];
+  }
 
-* Complete asteroid implementation. Include any other bonus features as desired/able
-* Deploy at least once to GitHub pages
+  // Confirm that 0 < AM * AB < AB squared and 0 < DM * AD < AD squared (which confirms that point is in circle)
+  return scalarProduct(aToM, aToB) > 0 && scalarProduct(aToM, aToB) < scalarProduct(aToB, aToB) && scalarProduct(aToM, aToD) > 0 && scalarProduct(aToM, aToD) < scalarProduct(aToD, aToD);
+}
+```
 
-### Weekend
-* Deploy to GitHub pages
-* Rewrite production README proposal
+### Canvas Resizing
+
+Another challenge I faced was not knowing some of the technical details regarding Canvas. If the canvas width and height is not properly set (with Javascript DOM manipulation), then the drawn images will be stretched to scale which will result in images with terrible resolution. Working with this knowledge and including two canvases on top of each other was an interesting task.
+
+```
+/src/scripts/environment.js
+
+resizeCanvasToDisplaySize(){
+  this.elementCanvas.width = this.elementCanvas.parentElement.clientWidth;
+  this.elementCanvas.height = this.elementCanvas.parentElement.clientHeight;
+
+  if(this.alterationCanvas){
+    this.alterationCanvas.width = this.alterationCanvas.parentElement.clientWidth;
+    this.alterationCanvas.height = this.alterationCanvas.parentElement.clientHeight;
+  }
+}
+```
+
+###
 
 ## Bonus features
 * Adding ability to break elements into smaller elements (probably need a library?)
